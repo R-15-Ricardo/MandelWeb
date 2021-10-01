@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="../media/styles/article_styles.css"/>
+        <title>El Conjunto Mandelbrot: expliación</title>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+            MathJax.Hub.Config({
+                extensions: ["tex2jax.js"],
+                jax: ["input/TeX", "output/HTML-CSS"],
+                tex2jax: {
+                    inlineMath: [ ['$','$'] ],
+                    displayMath: [ ['$$','$$'] ],
+                },
+                "HTML-CSS": { availableFonts: ["TeX"] }
+            });
+        </script>        
+    </head>
+    <body>
+        <div class="header__container">
+            <div class="header__title">
+                <div id="header__text">
+                    El conjunto Mandelbrot
+                </div>
+                <div id="header__logo">
+                    <p>
+                        Ricardo Reyes Mercado
+                    </p>
+                    <p>
+                        Universidad de Guanajuato
+                    </p>
+                </div>
+            </div>
+        </div>
+        <section class="m__container">
+            <aside class="menu">
+                <a href="../index.html">¿Qué es $\mathcal{M}?$</a>
+                <a href="#" style="background-color: #94b4b1; color: #1f2734;">Como generarlo</a>
+                <a href="simulator.html">¡Inténtalo!</a>
+            </aside>
+            <main class="main">
+                <div id="main__content">
+                    <p>El obvio problema con el método de "verificar todas las iteraciones para todos los números complejos", es que hay una cantidad infinita no-numerable de ellos y la cantidad de iteraciones que se tendría que hacer para asegurarnos de que estas no van a infinito es infinitamente numerable. Es por eso que, para hacer nuestro algoritmo amigable para la naturaleza finita de las computadoras, en lugar de verificar para todo el plano complejo, solo nos concentraremos en una pequeña región y dentro de esta pequeña región colorearemos subregiones más pequeñas a partir del comportamiento de un solo representante; y en lugar de esperar a que las iteraciones vayan a infinito, solo esperaremos a que salgan de un <b>"radio de escape"</b> y se queden dentro de este durante más de un <b>"número de tolerancia"</b> de iteraciones.</p>
+                    <p> Utilizando estos principios, podemos derivar el siguiente algoritmo:</p>
+                    <pre>
+                        <code>func mandelbrot_draw (int grid_size, int scape_radius, int tolerance) 
+{
+	byte pixels = new byte [grid_size][grid_size];
+	for (int x = 0 to grid_size-1) 
+	{
+		for (int y = 0 to grid_size-1) 
+		{
+			float a = map(x,-scape_radius,scape_radius); 
+			float b = map(y,-scape_radius,scape_radius);
+		
+			complex c = a+bi;
+			complex z = 0;
+		
+			for (int it = 0 to tolerance) 
+			{
+				z = z*z + c;
+				if (sqrt(z.a*z.a + z.b*z.b) > scape_radius) 
+				{
+					pixels[x][y] = WHITE;
+				}
+			}
+			pixels[x][y] = BLACK;
+		}
+	}
+	return pixels;
+}</code>
+                    </pre>
+					<h2>La belleza del caos</h2>
+					<p>El algoritmo anterior solo captura en la imagen información binaria de si el punto existe dentro de $\mathcal{M}$ o no, pero si para los puntos que no estan dentro, en lugar de descartar toda su información, guardamos la información relacionada con el número de iteraciones que le tomó salir del radio de escape, podemos utilizarla para creaar un "aura" de colores al rededor de los puntos que si exsiten dentro de $\mathcal{M}$ uno de los métodos más comunes, "enrollar" la cantidad de iteraciones necesarias para escapar al rededor del circulo cromático y usar el porcentaje de vuelta que dio para elegir un color. Sin embargo, existen muchos <a href="https://en.wikipedia.org/wiki/Plotting_algorithms_for_the_Mandelbrot_set">otros métodos</a> de coloreado que dan cabida a un sin fin de formas y colores que caracterizan la belleza de las representaciones fractales.</p>
+                </div>
+                <div class="main__footer">
+                    
+                </div>
+            </main>
+        </section>
+    </body>
+</html>

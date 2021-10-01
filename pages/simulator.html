@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="../media/styles/app_styles.css"/>
+        <title>Conjunto Mandelbrot: Generador</title>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+            MathJax.Hub.Config({
+                extensions: ["tex2jax.js"],
+                jax: ["input/TeX", "output/HTML-CSS"],
+                tex2jax: {
+                    inlineMath: [ ['$','$'] ],
+                    displayMath: [ ['$$','$$'] ],
+                },
+                "HTML-CSS": { availableFonts: ["TeX"] }
+            });
+        </script>
+        <script src="../media/scripts/p5.min.js"></script>    
+        <script src="../media/scripts/mandel.js"></script>
+    </head>
+    <body>
+        <div class="header__container">
+            <div class="header__title">
+                <div id="header__text">
+                    El conjunto Mandelbrot
+                </div>
+                <div id="header__logo">
+                    <p>
+                        Ricardo Reyes Mercado
+                    </p>
+                    <p>
+                        Universidad de Guanajuato
+                    </p>
+                </div>
+            </div>
+        </div>
+        <section class="m__container">
+            <aside class="menu">
+                <a href="../index.html">¿Qué es $\mathcal{M}?$</a>
+                <a href="generate.html">Como generarlo</a>
+                <a href="#" style="background-color: #94b4b1; color: #1f2734;">¡Inténtalo!</a>
+            </aside>
+            <main class="main">
+                <div id="main__content">
+                   <p>La siguiente imagen es una aplicación interactiva para jugar con los paremetros descritos en la sección "<a href="generate.html">Como generarlo</a>". A continuación una pequeña explicación de lo que hacen los deslizadores:</p>
+                   <p>
+                       <ul>
+                           <li><b>Densidad de la cuadricula</b>: Controla la cantidad de subsecciones en las que dividimos el plano compleje visible a través de la ventana. Para cada una de estas secciones, se toma el número complejo en su centro como representante.</li>
+                           <li><b>Radio de escape</b>: El radio del circulo centrado en $(0,0)$ que se usa para descartar puntos dentro de $\mathcal{M}$.</li>
+                           <li><b>Tolerancia</b>: Número de iteraciones que se tiene que completar antes de suponer que un punto vive dentro de $\mathcal{M}$.</li>
+                       </ul>
+                   </p>
+                   <p><b>¡SUBIR LA DENSIDAD DE LA CUADRICULA O LA TOLERANCIA HASTA EL MÁXIMO PUEDE ALENTAR EL EQUIPO!</b></p>
+                   <div id="application">
+                       <div id="p5canvas"></div>
+                       <div id="appControlers"></div>
+                   </div>
+
+                </div>
+                <div class="main__footer">
+                    
+                </div>
+            </main>
+        </section>
+    </body>
+</html>
